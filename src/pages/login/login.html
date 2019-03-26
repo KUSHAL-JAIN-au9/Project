@@ -1,0 +1,49 @@
+<ion-content>
+  <form #loginForm padding-horizontal>
+
+    <div class="logo-container">
+      <img class="app-icon" src="assets/imgs/logo_white.png" alt="">
+    </div>
+
+    <ion-list no-margin>
+      <ion-item>
+        <ion-label color="light" floating>Email</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="user.emailId"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list no-margin>
+      <ion-item>
+        <ion-label color="light" floating>Name</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="user.username"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list no-margin>
+      <ion-item>
+        <ion-label color="light" floating>URL</ion-label>
+        <ion-input type="text" name="url" [(ngModel)]="user.profileUrl"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-margin>
+      <button ion-button round full [disabled]="user.emailId==='' || user.username==='' || user.profileUrl===''" (click)="loginUsingEmail()"
+        icon-left color="light">
+        <ion-icon name="log-in"></ion-icon>
+        Login using Email
+      </button>
+    </ion-list>
+
+    <ion-list no-margin>
+      <button ion-button round full (click)="googleLogin()" icon-left color="light">
+        <ion-icon name="logo-googleplus"></ion-icon>
+        sign in with google
+      </button>
+    </ion-list>
+
+    <ion-list no-margin>
+      <button ion-button round full (click)="facebookLogin()" icon-left color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+        sign in with facebook
+      </button>
+    </ion-list>
+  </form>
+</ion-content>

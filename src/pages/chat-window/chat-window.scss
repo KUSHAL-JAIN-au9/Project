@@ -1,0 +1,22 @@
+page-chat-window {
+    ion-header {
+        ion-title {
+            .toolbar-title {
+                padding-left: 0px;
+                ion-item {
+                    .item-inner {
+                        border-bottom: none !important;
+                    }
+                }
+            }
+        }
+    }
+    .send-button {
+        background: transparent;
+        font-size: 20px;
+    }
+
+    .selected{
+        background-color: rgb(187, 222, 239);
+    }
+}

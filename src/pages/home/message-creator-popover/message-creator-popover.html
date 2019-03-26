@@ -1,0 +1,21 @@
+<ion-list padding-horizontal>
+    <ion-list-header no-padding>Create a new message</ion-list-header>
+    <!-- <ion-item no-padding>
+        <ion-label stacked>Title*</ion-label>
+        <ion-input type="text"></ion-input>
+    </ion-item> -->
+    <ion-item no-padding>
+        <ion-label stacked>Email ID*</ion-label>
+        <ion-input type="text" [(ngModel)]="message.to"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+        <ion-label stacked>Your message*</ion-label>
+        <ion-input type="text" [(ngModel)]="message.text"></ion-input>
+    </ion-item>
+
+
+    <div class="action-buttons" margin-top>
+        <button ion-button clear (click)="cancel()" class="cancel-button">Cancel</button>
+        <button ion-button round [disabled]="message.to==''||message.text==''" (click)="sendMessage()">Send</button>
+    </div>
+</ion-list>

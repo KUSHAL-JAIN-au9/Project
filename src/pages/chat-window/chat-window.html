@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-item color="primary" no-padding>
+        <ion-avatar item-start>
+          <img src="{{user.profileUrl}}" onerror="this.src='assets/imgs/user_fallback_image.png';">
+
+        </ion-avatar>
+        <h2>{{user.username?user.username:user.emailId}}</h2>
+      </ion-item>
+    </ion-title>
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="cancelSelection()">
+        Canel
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #content class="chatPage">
+
+  <ion-list no-lines>
+    <ion-item (press)="selectMessage($event,msg)" *ngFor="let msg of messages; let i = index" [ngClass]="[ selectedMessages[msg.id]?'selected':'']">
+      <chat-bubble [message]="messages[i]"></chat-bubble>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="chatPageFooter">
+  <ion-toolbar>
+
+    <ion-item>
+      <ion-label style="margin:0px;"></ion-label>
+      <div item-content style="width:100%;">
+        <elastic-textarea #txtChat placeholder="Type to compose" lineHeight="22" [isClear]="isContentClear" (textchanged)="textchanged($event)"></elastic-textarea>
+      </div>
+    </ion-item>
+
+    <ion-buttons right>
+      <button class="send-button" style="min-width:45px;" (click)="sendMessage()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

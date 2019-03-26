@@ -1,0 +1,21 @@
+<ion-list padding-horizontal>
+    <ion-list-header no-padding>Create a new post</ion-list-header>
+    <ion-item no-padding>
+        <ion-label stacked>Title*</ion-label>
+        <ion-input type="text" [(ngModel)]="message.title"></ion-input>
+    </ion-item>
+
+    <ion-item no-padding>
+        <ion-label stacked>Story*</ion-label>
+        <ion-input type="text" [(ngModel)]="message.story"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+        <ion-label stacked>Image (URL)</ion-label>
+        <ion-input type="text" [(ngModel)]="message.imageUrl"></ion-input>
+    </ion-item>
+
+    <div class="action-buttons" margin-top>
+        <button ion-button clear (click)="close()" class="cancel-button">Cancel</button>
+        <button ion-button round [disabled]="message.title==''&&message.story==''&&message.imageUrl==''" (click)="sendPost()">Post</button>
+    </div>
+</ion-list>

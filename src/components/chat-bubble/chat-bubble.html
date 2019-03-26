@@ -1,0 +1,12 @@
+<div class="chatBubble">
+  <img class="profile-pic" [ngClass]="(msg && msg.from == userId)?'right':'left'" src="{{msg.senderInfo.profileUrl}}" onerror="src='assets/imgs/user_fallback_image.png';">
+  <div class="chat-bubble" [ngClass]="(msg && msg.from == userId)?'right':'left'">
+    <div class="message">{{msg.text}}</div>
+    <div class="message-detail">
+      <span style="font-weight:bold;">{{msg.senderInfo.username}} </span>,
+      <span>{{msg.creatAt | date: 'H:mm'}}</span>
+      <ion-icon *ngIf="msg.from == userId && !msg.isDelivered" name="done-all"></ion-icon>
+      <ion-icon *ngIf="msg.from == userId && msg.isDelivered" name="alert"></ion-icon>
+    </div>
+  </div>
+</div>

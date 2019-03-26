@@ -1,0 +1,83 @@
+<ion-header mode="ios">
+
+
+
+  <ion-toolbar no-border-top mode="ios">
+    <ion-segment [(ngModel)]="uiMode" mode="ios">
+
+      <ion-segment-button value="tml" mode="ios">
+
+        Timeline
+      </ion-segment-button>
+      <ion-segment-button value="msg" mode="ios">
+
+        Messages
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+
+
+
+</ion-header>
+
+
+<ion-content padding>
+  <div [hidden]="uiMode != 'tml'">
+    <div *ngIf="timelineMessages && timelineMessages.length>0">
+      <ion-card (press)="selectMessage($event,card)" *ngFor="let card of timelineMessages" [ngClass]="[ selectedMessages[card.id]?'selected':'']">
+        <img *ngIf="card.imageUrl" src="{{card.imageUrl}}" />
+        <ion-card-content>
+
+          <ion-card-title>
+            {{card.title}}
+          </ion-card-title>
+          <p class="card-time">{{card.creatAt|date}}</p>
+          <p> {{card.story}} </p>
+
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <p *ngIf="!(timelineMessages && timelineMessages.length>0)"> No posts Found </p>
+  </div>
+  <div [hidden]="uiMode != 'msg'" class="contacts-container">
+    <div>
+      <ion-card *ngFor="let user of users| toArray">
+        <button ion-item (click)="goToChatWindow(user)">
+          <ion-avatar item-start>
+            <img src="{{user.profileUrl}}" onerror="this.src='assets/imgs/user_fallback_image.png';">
+          </ion-avatar>
+          <h2>{{user.username}}</h2>
+          <p text-left>{{user.emailId}}</p>
+        </button>
+      </ion-card>
+    </div>
+  </div>
+  <ion-fab right bottom>
+    <button [hidden]="uiMode != 'tml'" ion-fab color="light">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <button [hidden]="uiMode == 'tml'" ion-fab color="light">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <!-- this fab is placed at bottom right -->
+  <ion-fab right bottom>
+    <button class="big-button" ion-fab color="light">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button class="small-button" ion-fab color="light" (click)="openPostCreater()">
+        <ion-icon md="md-card"></ion-icon>
+      </button>
+
+      <button class="small-button" ion-fab color="light" (click)="openMessageCreater()">
+        <ion-icon md="md-chatbubbles"></ion-icon>
+
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
